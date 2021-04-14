@@ -1,0 +1,17 @@
+######### BACKEND #######
+Criar uma API de cadastro de pessoas em que a pessoa tenha os seguintes campos no JSON 
+- Id (Long)
+- Nome (Não nulo)
+- CPF (Lembrar de validar o mesmo)
+- Data de nascimento
+
+Basicamente o projeto devera conter 
+- Controller
+-- Registro de pessoa (POST) -> Estrutura de Pessoa na response
+-- Obtém pessoa pelo id (GET) -> Estrutura de Pessoa na response
+-- Lista pessoas (GET) -> Lista de estrutura de pessoa na response
+
+- Service
+-- Persistir uma pessoa no banco de dados com uma framework ORM. (depende da linguagem utilizada)
+-- Buscar na base de dados uma pessoa pelo seu id.
+-- Buscar na base de dados a LISTAGEM de pessoas.

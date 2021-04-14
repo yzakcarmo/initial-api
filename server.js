@@ -21,5 +21,7 @@ const { Ignitor } = require('@adonisjs/ignitor')
 
 new Ignitor(require('@adonisjs/fold'))
   .appRoot(__dirname)
-  .fireHttpServer()
+  .preLoad('app/Validators/custom-validators/cpf_cnpj-validation')
+  .fireHttpServer()  
   .catch(console.error)
+  
