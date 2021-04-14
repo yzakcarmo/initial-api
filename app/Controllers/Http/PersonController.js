@@ -8,20 +8,21 @@ class PersonController {
 
     return people;
   }
-  async store({ request }) {
+  async store({ request, response }) {
+    const data = request.only(["name", "cpf", "birth"]);
+
     const rules = {
-  
       cpf: "required|cpfCnpj",
     };
     const messages = {
-      "cpf.cpfCnpj": "CPF invalido",
+      "cpf.required":"CPF é obrigatorio",
+      "cpf.cpfCnpj": "CPF invalido"
     };
-    const validate = await validateAll(request.all(), rules, messages);
+    const validate = await validateAll(data, rules, messages);
     if (validate.fails()) {
       return response.status(401).send({ message: validate.messages() });
     }
 
-    const data = request.only(["name", "cpf", "birth"]);
     const person = await Person.create(data);
 
     return person;
@@ -30,6 +31,11 @@ class PersonController {
     const person = await Person.findOrFail(params.id);
 
     return person;
+  }
+  async destroy({ params }) {
+    const person = await Person.findOrFail(params.id);
+
+    person.delete();
   }
 }
 
